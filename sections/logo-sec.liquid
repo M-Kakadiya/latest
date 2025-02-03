@@ -1,0 +1,73 @@
+<section>
+  <div class="logo_sec mb-80">
+    <div class="page-width">
+      <div class="logo_review_flex">
+        <div class="review_col">
+          {% if section.settings.title != blank %}
+          <h5>{{ section.settings.title }}</h5>
+          {% endif %}
+          {% if section.settings.review != blank %}
+          <div class="review">{{ section.settings.review }}</div>
+          {% endif %}
+        </div>
+        <div class="logo_col">
+          <div class="logo_flex">
+           {% for block in section.blocks %}
+            <div class="logo_wrapper">
+            <div class="logo_box">
+            {% if block.settings.logo != blank %}
+            <img src="{{ block.settings.logo | img_url:'master' }}">
+            {% endif %}
+            </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Logo Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Add Title"
+      },
+      {
+        "type": "html",
+        "id": "review",
+        "label": "Add Review"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_block",
+        "name":"Logo Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Add Logo"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Logo Section"
+      }
+    ]
+  }
+{% endschema %}

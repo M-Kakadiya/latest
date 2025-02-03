@@ -1,0 +1,41 @@
+<sectino>
+  <div class="marquee_sec">
+    <div class="marquee_flex">
+    {% for block in section.blocks %}
+      <div class="marquee_wrapper">
+        {% if block.settings.title != blank %}
+        <h5>{{ block.settings.title }}</h5>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</sectino>
+
+
+
+
+{% schema %}
+  {
+    "name": "Marquee Sec",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "marquee_block",
+        "name":"Marquee Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Add Title"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Marquee Sec"
+      }
+    ]
+  }
+{% endschema %}

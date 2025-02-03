@@ -1,0 +1,73 @@
+<section>
+  <div class="service_sec mb-80">
+    <div class="page-width">
+      {% if section.settings.sub_title != blank %}
+        <h5 class="sub-title">{{ section.settings.sub_title }}</h5>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="common-title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      <div class="service_flex">
+        {% for block in section.blocks %}
+          <div class="service_wrapper">
+            {% if block.settings.icon != blank %}
+              <span>{{ block.settings.icon }}</span>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <h4>{{ block.settings.title }}</h4>
+            {% endif %}
+            {% if block.settings.desc != blank %}
+              <p>{{ block.settings.desc }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Servie section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "sub_title",
+      "label": "Add Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Add Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service_block",
+      "name":"Service Block",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Add Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Add Title"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Add Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service Section"
+    }
+  ]
+}
+{% endschema %}

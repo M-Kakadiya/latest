@@ -1,0 +1,105 @@
+<section>
+  <div class="custom_collection mb-80">
+    <div class="page-width">
+      {% if section.settings.sub_title != blank %}
+      <h5 class="sub-title">{{ section.settings.sub_title }}</h5>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+      <h2 class="common-title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.desc != blank %}
+      <p>{{ section.settings.desc }}</p>
+      {% endif %}
+      <div class="custom_collection_flex">
+       {% for block in section.blocks %}
+      {% assign collection = block.settings.collection %}
+      <div class="collection_wrapper">
+          {% if collection.image != blank %}
+         <img src="{{ collection.image | img_url:'master' }}">
+        {% else %}
+       {% if block.settings.collection_image != blank %}
+       <img src="{{ block.settings.collection_image | img_url:'master' }}">
+         {% endif %}
+      {% endif %}
+      <div class="inner_flex">
+      <div class="title_col">
+      <h4> {{ collection.title }}</h4>
+      <p>{{ collection.description }}</p>
+      </div>
+      <div class="arrow_col">
+         <a href="{{ collection.url }}">
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+  <g clip-path="url(#clip0_3_57)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M-2.81521 48.9901L-4.30535 48.9849L-4.33042 41.657L-15.8317 53.0867L-16.899 52.026L-5.39915 40.5978L-12.7716 40.5714L-12.7768 39.0906L-4.33896 39.1199L-4.33996 39.1125L-2.84982 39.1177L-2.81521 48.9901Z" fill="white"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.9348 21.4129L23.4446 21.4078L23.4196 14.0799L11.9183 25.5095L10.851 24.4489L22.3509 13.0206L14.9784 12.9943L14.9732 11.5134L23.411 11.5428L23.41 11.5354L24.9002 11.5405L24.9348 21.4129Z" fill="#1B1F23"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_3_57">
+      <rect width="19.0596" height="33.1036" fill="white" transform="matrix(0.709312 -0.704894 -0.709312 -0.704894 23.4808 37)"/>
+    </clipPath>
+  </defs>
+</svg></span>
+        </a>
+      </div>
+      </div>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Custom Collection",
+    "settings": [
+        {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Add Sub Title"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Add Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "desc",
+        "label": "Add Content"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection_block",
+        "name":"Collection Block",
+        "settings": [
+           {
+            "type":"collection",
+            "id":"collection",
+            "label":"Select Collection"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "collection_image",
+            "label" : "Collection Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Collection"
+      }
+    ]
+  }
+{% endschema %}

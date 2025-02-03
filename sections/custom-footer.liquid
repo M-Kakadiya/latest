@@ -1,0 +1,229 @@
+<footer>
+  <div class="custom_footer">
+    <div class="page-width">
+      <div class="custom_footer_flex">
+        {% for block in section.blocks %}
+        {% if block.type == 'newsletter_block' %}
+        <div class="custom_footer_newsletter">
+          {% if block.settings.title != blank %}
+          <h3>{{ block.settings.title }}</h3>
+          {% endif %}
+          {% if block.settings.desc != blank %}
+          <p>{{ block.settings.desc }}</p>
+          {% endif %}
+          <div class="newsletter_box">
+             {% form 'customer', class: 'newsletter-form' %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div
+                class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                <div class="field">
+                  <input
+                    id="NewsletterForm--{{ section.id }}"
+                    type="email"
+                    name="contact[email]"
+                    class="field__input"
+                    value="{{ form.email }}"
+                    aria-required="true"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    {% if form.errors %}
+                      autofocus
+                      aria-invalid="true"
+                      aria-describedby="Newsletter-error--{{ section.id }}"
+                    {% elsif form.posted_successfully? %}
+                      aria-describedby="Newsletter-success--{{ section.id }}"
+                    {% endif %}
+                    placeholder="{{ 'newsletter.label' | t }}"
+                    required
+                  >
+                  <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                    {{ 'newsletter.label' | t }}
+                  </label>
+                  <button
+                    type="submit"
+                    class="newsletter-form__button field__button"
+                    name="commit"
+                    id="Subscribe"
+                    aria-label="{{ 'newsletter.button_label' | t }}"
+                  >
+                    <span class="svg-wrapper">
+                      Subscribe
+                      <!-- {{- 'icon-arrow.svg' | inline_asset_content -}} -->
+                    </span>
+                  </button>
+                </div>
+                {%- if form.errors -%}
+                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+                    <span class="svg-wrapper">
+                      {{- 'icon-error.svg' | inline_asset_content -}}
+                    </span>
+                    {{- form.errors.translated_fields.email | capitalize }}
+                    {{ form.errors.messages.email -}}
+                  </small>
+                {%- endif -%}
+              </div>
+              {%- if form.posted_successfully? -%}
+                <h3
+                  class="newsletter-form__message newsletter-form__message--success form__message"
+                  id="Newsletter-success--{{ section.id }}"
+                  tabindex="-1"
+                  autofocus
+                >
+                  <span class="svg-wrapper">
+                    {{- 'icon-success.svg' | inline_asset_content -}}
+                  </span>
+                  {{- 'newsletter.success' | t }}
+                </h3>
+              {%- endif -%}
+            {% endform %}
+          </div>
+        </div>
+        {% endif %}
+           {% if block.type == 'linklist' %}
+        <div class="custom_footer_links">
+           {% if block.settings.heading != blank %}
+            <div class="footer_links_heading">
+              <h4>{{ block.settings.heading }}</h4>
+            </div>
+                {% endif %}
+            
+              {% assign menu = block.settings.menu %}
+            <ul>    
+            {% for link in menu.links %}
+              {% if link.title != blank %}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endif %}
+              {% endfor %}
+               </ul>
+        </div>
+        {% endif %}
+         {% if block.type == 'contact_block' %}
+        <div class="custom_contact_us">
+         <h4>{{ block.settings.heading }}</h4>
+         {% if block.settings.contact_info != blank %}
+          <div class="contact_info">{{ block.settings.contact_info }}</div>
+          {% endif %}
+          <div class="social_icon">
+            {% if block.settings.title != blank %}
+            <h3>{{ block.settings.title }}</h3>
+            {% endif %}
+             {% if block.settings.enable_icon != blank %}
+             {%- render 'social-icons', class: 'footer__list-social' -%}
+             {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="footer_bottom_line">
+      <div class="page-width">
+        <div class="bottom_line_flex">
+          <div class="copy_line">
+            {% if section.settings.copy != blank %}
+            <h5>{{ section.settings.copy }}</h5>
+            {% endif %}
+          </div>
+          <div class="made_line">
+            {% if section.settings.info != blank %}
+            <div>{{ section.settings.info }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Custom Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "copy",
+        "label": "Add Copyright Line"
+      },
+      {
+        "type": "html",
+        "id": "info",
+        "label": "Add Line"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "newsletter_block",
+        "name":"Newsletter Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Add Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "desc",
+            "label": "Add Content"
+          }
+        ]
+      },
+      {
+        "type" : "linklist",
+        "name" : "Linklist",
+        "settings" : [
+            {
+            "type" : "text",
+            "id" : "heading",
+            "label" : "Heading"
+          },
+          {
+            "type" : "link_list",
+            "id" : "menu",
+            "label" : "Select Menu"
+          }
+        ]
+      },
+      {
+        "type": "contact_block",
+        "name":"Contact Block",
+        "settings": [
+           {
+            "type" : "text",
+            "id" : "heading",
+            "label" : "Heading"
+          },
+          {
+            "type": "html",
+            "id": "contact_info",
+            "label": "Add Contact Info"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Add Title"
+          },
+           {
+            "type" : "checkbox",
+            "id" : "enable_icon",
+            "label" : "Enable Social Icon"
+            }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Footer"
+      }
+    ]
+  }
+{% endschema %}

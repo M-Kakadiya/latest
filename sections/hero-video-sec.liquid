@@ -1,0 +1,72 @@
+<section>
+  <div class="hero_video_sec">
+    <div class="hero_video_inner">
+       {% if section.settings.video_url != blank %}
+         <video autoplay muted loop>
+          <source src="{{ section.settings.video_url }}">
+        </video>
+      {% endif %}
+        {% if section.settings.img != blank %}
+           <img src="{{ section.settings.img | img_url:'master' }}">
+          {% endif %}
+      <div class="hero_content">
+        {% if section.settings.heading != blank %}
+        <h1>{{ section.settings.heading }}</h1>
+        {% endif %}
+        {% if section.settings.btn_text != blank %}
+        <a href="{{ section.settings.btn_url }}">
+          {{ section.settings.btn_text }}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Hero Video sec",
+    "settings": [
+         {
+        "type" :  "url",
+        "id"  :  "video_url",
+        "label" :  "Video Url"
+      },
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Add Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Add Heading"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Add Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Add Button Url"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Video Sec"
+      }
+    ]
+  }
+{% endschema %}

@@ -34,7 +34,7 @@
           slidesToScroll: 1, // Ensure only 1 slide is scrolled
         },
       },
-        {
+      {
         breakpoint: 559,
         settings: {
           slidesToShow: 1, // Ensure only 1 slide is shown

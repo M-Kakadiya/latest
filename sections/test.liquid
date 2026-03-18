@@ -54,9 +54,7 @@
                 tabindex="0"
                 aria-pressed="false"
               >
-                <div class="wholesale-card__check">
-                  ✓
-                </div>
+                <div class="wholesale-card__check">✓</div>
                 <div class="wholesale-card__image">
                   {%- if product.featured_image -%}
                     <img
@@ -72,12 +70,11 @@
                 </div>
                 <div class="wholesale-card__body">
                   <p class="wholesale-card__name">{{ product.title }}</p>
-                  <p class="wholesale-card__price"> {{ product.metafields.custom.product_weight_text }}</p>
+                  <p class="wholesale-card__price">{{ product.metafields.custom.product_weight_text }}</p>
                 </div>
               </div>
             {%- endfor -%}
           {%- else -%}
-            {%- comment -%} Placeholder cards for theme editor {%- endcomment -%}
             {%- for i in (1..6) -%}
               <div class="wholesale-card wholesale-card--placeholder">
                 <div class="wholesale-card__check">
@@ -105,13 +102,11 @@
             <p class="wholesale-form-card__subtitle">{{ section.settings.form_subheading | default: "We'll call you back with the best prices" }}</p>
           </div>
 
-          {%- comment -%} Selected items list {%- endcomment -%}
           <div class="wholesale-selected-items" id="wholesale-selected-wrap-{{ section.id }}">
             <label class="wholesale-label">Selected Items</label>
             <div class="wholesale-selected-list" id="wholesale-selected-list-{{ section.id }}"></div>
           </div>
 
-          {%- comment -%} Shopify Contact Form {%- endcomment -%}
           <div id="wholesale-form-{{ section.id }}" class="wholesale-form">
             {%- form 'contact' -%}
 
@@ -138,6 +133,19 @@
                   name="contact[business]"
                   class="wholesale-input"
                   autocomplete="organization"
+                >
+              </div>
+
+              {%- comment -%} ★ REQUIRED — Shopify will NOT send any email without contact[email] ★ {%- endcomment -%}
+              <div class="wholesale-field">
+                <label class="wholesale-label" for="ws-email-{{ section.id }}">Email Address *</label>
+                <input
+                  type="email"
+                  id="ws-email-{{ section.id }}"
+                  name="contact[email]"
+                  required
+                  class="wholesale-input"
+                  autocomplete="email"
                 >
               </div>
 
@@ -176,7 +184,6 @@
             {%- endform -%}
           </div>
 
-          {%- comment -%} Success state {%- endcomment -%}
           <div class="wholesale-success" id="wholesale-success-{{ section.id }}">
             <div class="wholesale-success__icon">
               <iconify-icon icon="solar:check-circle-bold" width="40" class="wholesale-success__icon-svg"></iconify-icon>
@@ -211,27 +218,23 @@
     text-align: center;
     margin-bottom: 40px;
   }
-
   .wholesale-section__heading {
     font-size: clamp(24px, 3vw, 38px);
     font-weight: 700;
     color: #1c1917;
     margin: 0 0 8px;
   }
-
   .wholesale-section__subheading {
     color: #78716c;
     font-size: 15px;
     margin: 0;
   }
 
-  /* Layout */
   .wholesale-layout {
     display: flex;
     flex-direction: column;
     gap: 40px;
   }
-
   @media (min-width: 1024px) {
     .wholesale-layout {
       flex-direction: row;
@@ -239,26 +242,22 @@
     }
   }
 
-  /* ── Products side ── */
   .wholesale-products {
     flex: 1;
     min-width: 0;
   }
-
   .wholesale-products__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
   }
-
   .wholesale-products__title {
     font-size: 20px;
     font-weight: 700;
     color: #1c1917;
     margin: 0 0 4px;
   }
-
   .wholesale-products__count {
     font-size: 13px;
     color: #78716c;
@@ -275,18 +274,13 @@
     padding: 4px 12px;
     border-radius: 999px;
   }
+  .wholesale-selected-badge.is-visible { display: block; }
 
-  .wholesale-selected-badge.is-visible {
-    display: block;
-  }
-
-  /* Grid */
   .wholesale-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-
   @media (min-width: 768px) {
     .wholesale-grid {
       grid-template-columns: repeat(3, 1fr);
@@ -294,7 +288,6 @@
     }
   }
 
-  /* Card */
   .wholesale-card {
     position: relative;
     background: #fff;
@@ -304,17 +297,13 @@
     cursor: pointer;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
     user-select: none;
-    padding:18px;
+    padding: 18px;
   }
-  .wholesale-card.is-selected {
-    border-color: var(--ws-accent);
-  }
-
+  .wholesale-card.is-selected { border-color: var(--ws-accent); }
   .wholesale-card.is-selected .wholesale-card__check {
     opacity: 1;
     transform: scale(1);
   }
-
   .wholesale-card__check {
     position: absolute;
     top: 8px;
@@ -332,14 +321,12 @@
     transition: opacity 0.2s, transform 0.2s;
     z-index: 1;
   }
-
   .wholesale-card__image {
     aspect-ratio: 1;
     overflow: hidden;
     background: #f5f5f4;
     border-radius: var(--ws-radius);
   }
-
   .wholesale-card__image img,
   .wholesale-card__placeholder {
     width: 100%;
@@ -349,38 +336,26 @@
     transition: transform 0.3s ease;
     border-radius: var(--ws-radius);
   }
-
-  .wholesale-card:hover .wholesale-card__image img {
-    transform: scale(1.04);
+  .wholesale-card:hover .wholesale-card__image img { transform: scale(1.04); }
+  .wholesale-card__body { padding: 12px 0 0 0; }
+  .wholesale-card__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #292524;
+    margin: 0 0 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+  }
+  .wholesale-card__price {
+    font-size: 10px;
+    color: #A8A29E;
+    margin: 0;
+    line-height: 15px;
   }
 
-  .wholesale-card__body {
-    padding:12px 0 0 0;
-  }
-
-    .wholesale-card__name {
-        font-size: 14px;
-        font-weight: 500;
-        color: #292524;
-        margin: 0 0 3px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 20px;
-    }
-
-    .wholesale-card__price {
-        font-size: 10px;
-        color: #A8A29E;
-        margin: 0;
-        line-height: 15px;
-    }
-
-  /* ── Sidebar ── */
-  .wholesale-sidebar {
-    width: 100%;
-  }
-
+  .wholesale-sidebar { width: 100%; }
   @media (min-width: 1024px) {
     .wholesale-sidebar {
       width: 384px;
@@ -388,46 +363,40 @@
     }
   }
 
-    .wholesale-form-card {
-        position: sticky;
-        top: 112px;
-        background: #fff;
-        border: 1px solid #E7E5E4;
-        border-radius: 16px;
-        padding: 24px 24px 40px;
-    }
-
-  .wholesale-form-card__header {
-    margin-bottom: 20px;
+  .wholesale-form-card {
+    position: sticky;
+    top: 112px;
+    background: #fff;
+    border: 1px solid #E7E5E4;
+    border-radius: 16px;
+    padding: 24px 24px 40px;
   }
-
+  .wholesale-form-card__header { margin-bottom: 20px; }
   .wholesale-form-card__title {
     font-size: 20px;
     color: #1C1917;
     margin: 0 0 4px;
     line-height: 28px;
   }
-    .wholesale-field input[type="text"], .wholesale-field input[type="tel"] {
-        background: #FAFAF9;
-        border: 1px solid #E7E5E4;
-        border-radius: 8px;
-    }
   .wholesale-form-card__subtitle {
     font-size: 12px;
     color: #78716c;
     margin: 0;
   }
 
-  /* Selected items */
+  .wholesale-field input[type="text"],
+  .wholesale-field input[type="tel"],
+  .wholesale-field input[type="email"] {
+    background: #FAFAF9;
+    border: 1px solid #E7E5E4;
+    border-radius: 8px;
+  }
+
   .wholesale-selected-items {
     display: none;
     margin-bottom: 16px;
   }
-
-  .wholesale-selected-items.is-visible {
-    display: block;
-  }
-
+  .wholesale-selected-items.is-visible { display: block; }
   .wholesale-selected-list {
     max-height: 160px;
     overflow-y: auto;
@@ -437,7 +406,6 @@
     flex-direction: column;
     gap: 6px;
   }
-
   .wholesale-selected-tag {
     display: flex;
     align-items: center;
@@ -449,26 +417,22 @@
     color: #1c1917;
   }
 
-  /* Form fields */
   .wholesale-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
-
   .wholesale-field {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 12px;    
+    margin-bottom: 12px;
   }
-
   .wholesale-label {
     font-size: 12px;
     font-weight: 500;
     color: #44403c;
   }
-
   .wholesale-input {
     width: 100%;
     background: #fafaf9;
@@ -481,18 +445,13 @@
     box-sizing: border-box;
     font-family: inherit;
   }
-
   .wholesale-input:focus {
     outline: none;
     border-color: var(--ws-accent);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ws-accent) 15%, transparent);
   }
+  .wholesale-input--textarea { resize: none; }
 
-  .wholesale-input--textarea {
-    resize: none;
-  }
-
-  /* Submit */
   .wholesale-submit {
     width: 100%;
     background: var(--ws-accent-dark);
@@ -507,27 +466,20 @@
     font-family: inherit;
     margin-top: 4px;
   }
-
   .wholesale-submit:hover:not(:disabled) {
     background: color-mix(in srgb, var(--ws-accent-dark) 85%, black);
   }
-
   .wholesale-submit:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  /* Success */
   .wholesale-success {
     display: none;
     text-align: center;
     padding: 32px 0;
   }
-
-  .wholesale-success.is-visible {
-    display: block;
-  }
-
+  .wholesale-success.is-visible { display: block; }
   .wholesale-success__icon {
     width: 64px;
     height: 64px;
@@ -538,24 +490,18 @@
     justify-content: center;
     margin: 0 auto 16px;
   }
-
-  .wholesale-success__icon-svg {
-    color: var(--ws-accent);
-  }
-
+  .wholesale-success__icon-svg { color: var(--ws-accent); }
   .wholesale-success__title {
     font-size: 15px;
     font-weight: 600;
     color: #1c1917;
     margin: 0 0 4px;
   }
-
   .wholesale-success__subtitle {
     font-size: 12px;
     color: #78716c;
     margin: 0 0 16px;
   }
-
   .wholesale-success__reset {
     background: none;
     border: none;
@@ -566,19 +512,12 @@
     text-decoration: underline;
     font-family: inherit;
   }
-  @media (max-width: 1024px){
-    .wholesale-card {
-    padding: 14px;
-}
-.wholesale-layout {
-    gap: 30px;
-}
-.wholesale-grid {
-    gap: 12px;
-}
-.wholesale-section {
-    padding: 0 0 80px;
-}
+
+  @media (max-width: 1024px) {
+    .wholesale-card { padding: 14px; }
+    .wholesale-layout { gap: 30px; }
+    .wholesale-grid { gap: 12px; }
+    .wholesale-section { padding: 0 0 80px; }
   }
 </style>
 
@@ -586,8 +525,6 @@
 <script>
 (function() {
   var sectionId = '{{ section.id }}';
-
-  // Update product count on load
   document.addEventListener('DOMContentLoaded', function() {
     var grid = document.getElementById('wholesale-grid-' + sectionId);
     var countEl = document.getElementById('wholesale-count-' + sectionId);
@@ -616,13 +553,11 @@ function updateWholesaleForm(sectionId) {
   var selected = grid ? grid.querySelectorAll('.wholesale-card.is-selected') : [];
   var count = selected.length;
 
-  // Badge
   if (badge) {
     badge.classList.toggle('is-visible', count > 0);
     if (badgeCount) badgeCount.textContent = count;
   }
 
-  // Selected list
   if (listWrap) listWrap.classList.toggle('is-visible', count > 0);
   if (list) {
     list.innerHTML = '';
@@ -634,7 +569,6 @@ function updateWholesaleForm(sectionId) {
     });
   }
 
-  // Hidden input — build a readable product list for the email body
   if (hiddenInput) {
     var items = Array.from(selected).map(function(c) {
       var title  = c.dataset.productTitle;
@@ -644,7 +578,6 @@ function updateWholesaleForm(sectionId) {
     hiddenInput.value = items.join(', ');
   }
 
-  // Submit button
   if (submitBtn) {
     submitBtn.disabled = count === 0;
     submitBtn.textContent = count === 0
@@ -654,7 +587,6 @@ function updateWholesaleForm(sectionId) {
 }
 
 function resetWholesaleForm(sectionId) {
-  // Deselect all cards
   var grid = document.getElementById('wholesale-grid-' + sectionId);
   if (grid) {
     grid.querySelectorAll('.wholesale-card.is-selected').forEach(function(c) {
@@ -662,17 +594,13 @@ function resetWholesaleForm(sectionId) {
       c.setAttribute('aria-pressed', 'false');
     });
   }
-
-  // Hide success, show form wrapper
   var success     = document.getElementById('wholesale-success-' + sectionId);
   var formWrapper = document.getElementById('wholesale-form-' + sectionId);
   if (success) success.classList.remove('is-visible');
   if (formWrapper) formWrapper.style.display = '';
-
   updateWholesaleForm(sectionId);
 }
 
-// ── FIXED: Handle Shopify contact form submission ──
 document.addEventListener('DOMContentLoaded', function() {
   var sectionId   = '{{ section.id }}';
   var wrapper     = document.getElementById('wholesale-form-' + sectionId);
@@ -684,18 +612,14 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Make sure the hidden product list is populated before sending
+    // Merge selected products into the body field so they appear in the email
     var hiddenInput = document.getElementById('ws-products-' + sectionId);
-    if (hiddenInput && hiddenInput.value) {
-      // Append selected products into the notes/body field so they appear in the email
-      var bodyField = form.querySelector('textarea[name="contact[body]"]');
-      if (bodyField) {
-        var existing = bodyField.value.trim();
-        bodyField.value = (existing ? existing + '\n\n' : '') + 'Selected Products: ' + hiddenInput.value;
-      }
+    var bodyField   = form.querySelector('textarea[name="contact[body]"]');
+    if (hiddenInput && hiddenInput.value && bodyField) {
+      var existing = bodyField.value.trim();
+      bodyField.value = 'Selected Products: ' + hiddenInput.value + (existing ? '\n\nNotes: ' + existing : '');
     }
 
-    // Serialize form as URL-encoded — required by Shopify contact form endpoint
     var params = new URLSearchParams(new FormData(form));
 
     fetch('/contact', {
@@ -708,17 +632,14 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(function(response) {
       if (response.ok) {
-        // Show success state
         wrapper.style.display = 'none';
         var success = document.getElementById('wholesale-success-' + sectionId);
         if (success) success.classList.add('is-visible');
       } else {
-        // Server rejected — fall back to native submit so Shopify handles the error
         form.submit();
       }
     })
     .catch(function() {
-      // Network error — fall back to native submit
       form.submit();
     });
   });

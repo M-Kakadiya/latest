@@ -18,6 +18,26 @@
         "btn_url": "#"
       }
     },
+    "test_L4Hrqn": {
+      "type": "test",
+      "name": "Wholesale Bulk Order",
+      "settings": {
+        "heading": "Wholesale & Bulk Orders",
+        "subheading": "Get the best prices for large orders",
+        "grid_heading": "Select Bulk Products",
+        "collection": "cognitive-function",
+        "product_limit": 9,
+        "form_heading": "Request Custom Quote",
+        "form_subheading": "We'll call you back with the best prices",
+        "submit_label": "Select items to continue",
+        "success_message": "We'll call you within 24 hours with a quote.",
+        "accent_color": "#059669",
+        "accent_dark_color": "#065f46",
+        "accent_light_color": "#ecfdf5",
+        "padding_top": 45,
+        "padding_bottom": 135
+      }
+    },
     "marqee_sec_WkKxJe": {
       "type": "marqee-sec",
       "blocks": {
@@ -497,6 +517,7 @@
   },
   "order": [
     "hero_video_sec_HmQCyX",
+    "test_L4Hrqn",
     "marqee_sec_WkKxJe",
     "logo_sec_6qWnQ8",
     "custom_collection_tAHAVD",

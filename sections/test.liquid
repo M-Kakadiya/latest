@@ -557,7 +557,6 @@ function updateWholesaleForm(sectionId) {
     badge.classList.toggle('is-visible', count > 0);
     if (badgeCount) badgeCount.textContent = count;
   }
-
   if (listWrap) listWrap.classList.toggle('is-visible', count > 0);
   if (list) {
     list.innerHTML = '';
@@ -568,16 +567,12 @@ function updateWholesaleForm(sectionId) {
       list.appendChild(tag);
     });
   }
-
   if (hiddenInput) {
     var items = Array.from(selected).map(function(c) {
-      var title  = c.dataset.productTitle;
-      var weight = c.dataset.productPrice;
-      return weight ? title + ' (' + weight + ')' : title;
+      return c.dataset.productPrice ? c.dataset.productTitle + ' (' + c.dataset.productPrice + ')' : c.dataset.productTitle;
     });
     hiddenInput.value = items.join(', ');
   }
-
   if (submitBtn) {
     submitBtn.disabled = count === 0;
     submitBtn.textContent = count === 0
@@ -601,47 +596,24 @@ function resetWholesaleForm(sectionId) {
   updateWholesaleForm(sectionId);
 }
 
+// NO AJAX — let Shopify handle the submit natively
+// This will redirect to the page with ?contact%5Bsubmitted%5D=true on success
 document.addEventListener('DOMContentLoaded', function() {
   var sectionId   = '{{ section.id }}';
   var wrapper     = document.getElementById('wholesale-form-' + sectionId);
   if (!wrapper) return;
-
   var form = wrapper.querySelector('form');
   if (!form) return;
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Merge selected products into the body field so they appear in the email
+  form.addEventListener('submit', function() {
+    // Merge selected products into body before native submit
     var hiddenInput = document.getElementById('ws-products-' + sectionId);
     var bodyField   = form.querySelector('textarea[name="contact[body]"]');
     if (hiddenInput && hiddenInput.value && bodyField) {
       var existing = bodyField.value.trim();
       bodyField.value = 'Selected Products: ' + hiddenInput.value + (existing ? '\n\nNotes: ' + existing : '');
     }
-
-    var params = new URLSearchParams(new FormData(form));
-
-    fetch('/contact', {
-      method: 'POST',
-      body: params.toString(),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-Requested-With': 'XMLHttpRequest'
-      }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        wrapper.style.display = 'none';
-        var success = document.getElementById('wholesale-success-' + sectionId);
-        if (success) success.classList.add('is-visible');
-      } else {
-        form.submit();
-      }
-    })
-    .catch(function() {
-      form.submit();
-    });
+    // Let the form submit normally — no e.preventDefault()
   });
 });
 </script>

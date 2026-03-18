@@ -136,7 +136,7 @@
                 >
               </div>
 
-              {%- comment -%} ★ REQUIRED — Shopify will NOT send any email without contact[email] ★ {%- endcomment -%}
+              {%- comment -%} REQUIRED — Shopify will not send email without contact[email] {%- endcomment -%}
               <div class="wholesale-field">
                 <label class="wholesale-label" for="ws-email-{{ section.id }}">Email Address *</label>
                 <input
@@ -242,10 +242,7 @@
     }
   }
 
-  .wholesale-products {
-    flex: 1;
-    min-width: 0;
-  }
+  .wholesale-products { flex: 1; min-width: 0; }
   .wholesale-products__header {
     display: flex;
     align-items: center;
@@ -300,16 +297,11 @@
     padding: 18px;
   }
   .wholesale-card.is-selected { border-color: var(--ws-accent); }
-  .wholesale-card.is-selected .wholesale-card__check {
-    opacity: 1;
-    transform: scale(1);
-  }
+  .wholesale-card.is-selected .wholesale-card__check { opacity: 1; transform: scale(1); }
   .wholesale-card__check {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 24px;
-    height: 24px;
+    top: 8px; right: 8px;
+    width: 24px; height: 24px;
     background: var(--ws-accent);
     color: #fff;
     border-radius: 50%;
@@ -329,8 +321,7 @@
   }
   .wholesale-card__image img,
   .wholesale-card__placeholder {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
@@ -339,28 +330,16 @@
   .wholesale-card:hover .wholesale-card__image img { transform: scale(1.04); }
   .wholesale-card__body { padding: 12px 0 0 0; }
   .wholesale-card__name {
-    font-size: 14px;
-    font-weight: 500;
-    color: #292524;
+    font-size: 14px; font-weight: 500; color: #292524;
     margin: 0 0 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     line-height: 20px;
   }
-  .wholesale-card__price {
-    font-size: 10px;
-    color: #A8A29E;
-    margin: 0;
-    line-height: 15px;
-  }
+  .wholesale-card__price { font-size: 10px; color: #A8A29E; margin: 0; line-height: 15px; }
 
   .wholesale-sidebar { width: 100%; }
   @media (min-width: 1024px) {
-    .wholesale-sidebar {
-      width: 384px;
-      flex-shrink: 0;
-    }
+    .wholesale-sidebar { width: 384px; flex-shrink: 0; }
   }
 
   .wholesale-form-card {
@@ -372,17 +351,8 @@
     padding: 24px 24px 40px;
   }
   .wholesale-form-card__header { margin-bottom: 20px; }
-  .wholesale-form-card__title {
-    font-size: 20px;
-    color: #1C1917;
-    margin: 0 0 4px;
-    line-height: 28px;
-  }
-  .wholesale-form-card__subtitle {
-    font-size: 12px;
-    color: #78716c;
-    margin: 0;
-  }
+  .wholesale-form-card__title { font-size: 20px; color: #1C1917; margin: 0 0 4px; line-height: 28px; }
+  .wholesale-form-card__subtitle { font-size: 12px; color: #78716c; margin: 0; }
 
   .wholesale-field input[type="text"],
   .wholesale-field input[type="tel"],
@@ -392,58 +362,27 @@
     border-radius: 8px;
   }
 
-  .wholesale-selected-items {
-    display: none;
-    margin-bottom: 16px;
-  }
+  .wholesale-selected-items { display: none; margin-bottom: 16px; }
   .wholesale-selected-items.is-visible { display: block; }
   .wholesale-selected-list {
-    max-height: 160px;
-    overflow-y: auto;
-    margin-top: 8px;
-    margin-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    max-height: 160px; overflow-y: auto;
+    margin-top: 8px; margin-bottom: 12px;
+    display: flex; flex-direction: column; gap: 6px;
   }
   .wholesale-selected-tag {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 12px;
-    background: #f5f5f4;
-    border-radius: 8px;
-    padding: 6px 10px;
-    color: #1c1917;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; background: #f5f5f4; border-radius: 8px;
+    padding: 6px 10px; color: #1c1917;
   }
 
-  .wholesale-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .wholesale-field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 12px;
-  }
-  .wholesale-label {
-    font-size: 12px;
-    font-weight: 500;
-    color: #44403c;
-  }
+  .wholesale-form { display: flex; flex-direction: column; gap: 12px; }
+  .wholesale-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+  .wholesale-label { font-size: 12px; font-weight: 500; color: #44403c; }
   .wholesale-input {
-    width: 100%;
-    background: #fafaf9;
-    border: 1px solid #e7e5e4;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 14px;
-    color: #1c1917;
+    width: 100%; background: #fafaf9; border: 1px solid #e7e5e4;
+    border-radius: 8px; padding: 10px 12px; font-size: 14px; color: #1c1917;
     transition: border-color 0.2s, box-shadow 0.2s;
-    box-sizing: border-box;
-    font-family: inherit;
+    box-sizing: border-box; font-family: inherit;
   }
   .wholesale-input:focus {
     outline: none;
@@ -453,64 +392,31 @@
   .wholesale-input--textarea { resize: none; }
 
   .wholesale-submit {
-    width: 100%;
-    background: var(--ws-accent-dark);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
+    width: 100%; background: var(--ws-accent-dark); color: #fff;
+    border: none; border-radius: 8px; padding: 12px;
+    font-size: 14px; font-weight: 500; cursor: pointer;
     transition: background 0.2s, opacity 0.2s;
-    font-family: inherit;
-    margin-top: 4px;
+    font-family: inherit; margin-top: 4px;
   }
   .wholesale-submit:hover:not(:disabled) {
     background: color-mix(in srgb, var(--ws-accent-dark) 85%, black);
   }
-  .wholesale-submit:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .wholesale-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .wholesale-success {
-    display: none;
-    text-align: center;
-    padding: 32px 0;
-  }
+  .wholesale-success { display: none; text-align: center; padding: 32px 0; }
   .wholesale-success.is-visible { display: block; }
   .wholesale-success__icon {
-    width: 64px;
-    height: 64px;
-    background: var(--ws-accent-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 16px;
+    width: 64px; height: 64px; background: var(--ws-accent-light);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; margin: 0 auto 16px;
   }
   .wholesale-success__icon-svg { color: var(--ws-accent); }
-  .wholesale-success__title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1c1917;
-    margin: 0 0 4px;
-  }
-  .wholesale-success__subtitle {
-    font-size: 12px;
-    color: #78716c;
-    margin: 0 0 16px;
-  }
+  .wholesale-success__title { font-size: 15px; font-weight: 600; color: #1c1917; margin: 0 0 4px; }
+  .wholesale-success__subtitle { font-size: 12px; color: #78716c; margin: 0 0 16px; }
   .wholesale-success__reset {
-    background: none;
-    border: none;
-    color: var(--ws-accent);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: underline;
-    font-family: inherit;
+    background: none; border: none; color: var(--ws-accent);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    text-decoration: underline; font-family: inherit;
   }
 
   @media (max-width: 1024px) {
@@ -569,7 +475,9 @@ function updateWholesaleForm(sectionId) {
   }
   if (hiddenInput) {
     var items = Array.from(selected).map(function(c) {
-      return c.dataset.productPrice ? c.dataset.productTitle + ' (' + c.dataset.productPrice + ')' : c.dataset.productTitle;
+      return c.dataset.productPrice
+        ? c.dataset.productTitle + ' (' + c.dataset.productPrice + ')'
+        : c.dataset.productTitle;
     });
     hiddenInput.value = items.join(', ');
   }
@@ -596,24 +504,56 @@ function resetWholesaleForm(sectionId) {
   updateWholesaleForm(sectionId);
 }
 
-// NO AJAX — let Shopify handle the submit natively
-// This will redirect to the page with ?contact%5Bsubmitted%5D=true on success
 document.addEventListener('DOMContentLoaded', function() {
   var sectionId   = '{{ section.id }}';
   var wrapper     = document.getElementById('wholesale-form-' + sectionId);
   if (!wrapper) return;
+
   var form = wrapper.querySelector('form');
   if (!form) return;
 
-  form.addEventListener('submit', function() {
-    // Merge selected products into body before native submit
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Merge selected products into body so they appear in the email
     var hiddenInput = document.getElementById('ws-products-' + sectionId);
     var bodyField   = form.querySelector('textarea[name="contact[body]"]');
     if (hiddenInput && hiddenInput.value && bodyField) {
       var existing = bodyField.value.trim();
-      bodyField.value = 'Selected Products: ' + hiddenInput.value + (existing ? '\n\nNotes: ' + existing : '');
+      bodyField.value = 'Selected Products: ' + hiddenInput.value
+        + (existing ? '\n\nNotes: ' + existing : '');
     }
-    // Let the form submit normally — no e.preventDefault()
+
+    // ★ KEY FIX: use form.action (the actual page URL Shopify generated)
+    //   NOT hardcoded '/contact' — that only works on the /contact page
+    var postUrl = form.action || window.location.href;
+    var params  = new URLSearchParams(new FormData(form));
+
+    fetch(postUrl, {
+      method: 'POST',
+      body: params.toString(),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        wrapper.style.display = 'none';
+        var success = document.getElementById('wholesale-success-' + sectionId);
+        if (success) success.classList.add('is-visible');
+      } else {
+        // Show the error so we can see what Shopify returns
+        response.text().then(function(text) {
+          console.error('Shopify contact form error:', response.status, text);
+        });
+        form.submit(); // fallback to native
+      }
+    })
+    .catch(function(err) {
+      console.error('Fetch error:', err);
+      form.submit();
+    });
   });
 });
 </script>
